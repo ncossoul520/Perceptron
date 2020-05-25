@@ -56,7 +56,7 @@ public class Main extends PApplet {
     }
 
     private static void runTrainingData(Perceptron nn, DataSet d) {
-        for (int epochs = 0; epochs < 169; epochs++) {
+        for (int epochs = 0; epochs < 10; epochs++) {
             for (DataSet.DataPoint p : d.getData()) {
                 String correctLabel = p.getLabelString();
 
