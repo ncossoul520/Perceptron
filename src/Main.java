@@ -1,5 +1,4 @@
 import processing.core.PApplet;
-
 import java.util.ArrayList;
 
 public class Main extends PApplet {
@@ -16,9 +15,11 @@ public class Main extends PApplet {
 
     int currentIndex = 0;
 
-    public void setup() {
+    public void settings() {
         size(800, 800);
+    }
 
+    public void setup() {
         String[] headers = {"sepal length", "sepal width", "petal length", "petal width", "class"};
         d = DataReader.createDataSetFromCSV("iris.data", 0, headers);
 
