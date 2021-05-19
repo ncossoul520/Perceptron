@@ -15,7 +15,7 @@ public class PerceptronVisualizer extends PApplet {
 
 	public void setup() {
 		String[] headers = { "sepal length", "sepal width", "petal length", "petal width", "class" };
-		data = DataReader.createDataSetFromCSV("iris.data", 0, headers);
+		data = DataReader.createDataSetFromCSV("data/iris.data", 0, headers);
 
 		Collections.shuffle(data.getData());
 		dataViz = new DataSetViz(data, 0, 0, 300, height);
@@ -49,6 +49,11 @@ public class PerceptronVisualizer extends PApplet {
 	}
 
 	private void drawPerceptron() {
+		if (nn.getWeights() == null) {
+			System.err.println("Cannot draw perceptrion: getWeights() method must return float[][]");
+			return;
+		}
+
 		int centerX = (int) (2 * 900 / 3.0f);
 		int centerY = (int) (height / 2.0f);
 		stroke(0);

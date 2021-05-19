@@ -21,7 +21,7 @@ public class Main extends PApplet {
 
     public void setup() {
         String[] headers = {"sepal length", "sepal width", "petal length", "petal width", "class"};
-        d = DataReader.createDataSetFromCSV("iris.data", 0, headers);
+        d = DataReader.createDataSetFromCSV("data/iris.data", 0, headers);
 
         nn = new Perceptron(2, "setosa");
 
@@ -77,6 +77,8 @@ public class Main extends PApplet {
     private void displayNNInfo(Perceptron nn, int x, int y) {
         float[] weights = nn.getWeights();
         float threshold = nn.getThreshold();
+
+        if (weights == null) return;
 
         String w1 = String.format("%.2f", weights[0]);
         String w2 = String.format("%.2f", weights[1]);
