@@ -15,8 +15,11 @@ public class Perceptron {
     }
 
     private float[] initWeights(int numInputs) {
-        // TODO:  initialize the weights
-        return null;
+        float[] w = new float[ numInputs ];
+        for (int i = 0; i < numInputs; i++) {
+            w[i] = 0.1f;
+        }
+        return w;
     }
 
     /***
@@ -28,22 +31,35 @@ public class Perceptron {
      * @return
      */
     public boolean train(float[] input, String correctLabel) {
-        // TODO:  Implement this.
-
         // run the perceptron on the input
         // compare the guess with the correct label (can use already-made helper method for this).
-
         // If guess was incorrect
         //    update weights and THRESHOLD using learning rule
+        float prediction = guess( input );
+        int correctAns = getCorrectGuess( correctLabel );
+        int error = (int)(prediction - correctAns);
+
+        // TODO debug
+        if ( prediction != correctAns ) {
+            for (int i = 0; i < weights.length; i++) {
+                weights[i] += learningRate * input[i] * error;
+            }
+            THRESHOLD += learningRate * error;
+            return true;
+        }
 
         return false;
     }
 
     public int guess(float[] input) {
-        // TODO:  Implement this.
         // Do a linear combination of the inputs multiplied by the weights.
-        // Run the sum through the activiationFunction and return the result
-        return -1;
+        // Run the sum through the activation Function and return the result
+        float sum = 0;
+        for (int i = 0; i < input.length; i++) {
+            sum += input[i] * weights[i];
+        }
+
+        return activationFunction( sum );
     }
 
     private int activationFunction(float sum) {
