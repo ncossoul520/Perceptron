@@ -17,7 +17,7 @@ public class Perceptron {
     private float[] initWeights(int numInputs) {
         float[] w = new float[ numInputs ];
         for (int i = 0; i < numInputs; i++) {
-            w[i] = 0.1f;
+            w[i] = (float)(Math.random());
         }
         return w;
     }
@@ -42,7 +42,7 @@ public class Perceptron {
         // TODO debug
         if ( prediction != correctAns ) {
             for (int i = 0; i < weights.length; i++) {
-                weights[i] += learningRate * input[i] * error;
+                weights[i] -= learningRate * input[i] * error;
             }
             THRESHOLD += learningRate * error;
             return true;
